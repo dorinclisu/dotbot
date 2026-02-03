@@ -55,7 +55,7 @@ class Clean(Plugin):
                 # symlinked directories. okay to do a recursive call here
                 # because depth should be fairly limited
                 self._clean(path, force=force, recursive=recursive)
-            if not os.path.exists(path) and os.path.islink(path):
+            if os.path.islink(path):
                 points_at = os.path.join(os.path.dirname(path), os.readlink(path))
                 if sys.platform == "win32" and points_at.startswith("\\\\?\\"):
                     points_at = points_at[4:]
